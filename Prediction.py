@@ -364,8 +364,8 @@ class DegradationAnalysis:
 def main():
     print("="*60 + "\nDEGRADATION ANALYSIS & EXTRAPOLATION TOOL\n" + "="*60)
     print("This tool automatically generates predictive models, graphs, and performance heatmaps.")
-    room_file = input("Enter the path to the ROOM temperature data Excel file: ").strip('"')
-    ref_file = input("Enter the path to the REFRIGERATOR temperature data Excel file: ").strip('"')
+    room_file = input("Enter the path to the Room temperature data Excel file: ").strip('"')
+    ref_file = input("Enter the path to the Refrigerator temperature data Excel file: ").strip('"')
     
     try:
         analysis = DegradationAnalysis(room_file, ref_file)
