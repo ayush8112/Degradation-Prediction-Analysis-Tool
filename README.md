@@ -202,6 +202,3 @@ This project is available under the MIT License. Add a `LICENSE` file with the s
 **Short notice**: you must add a `LICENSE` file containing the full MIT license to apply the license.
 
 ---
-
-## Contact
-Open an issue or create a pull request on the repository. Attach sample data and the command-line output for faster debugging.
