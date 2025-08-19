@@ -1,6 +1,6 @@
-# Degradation Prediction & Analysis Tool
+# Degradation Analysis & Extrapolation Tool
 
-A focused Python toolkit to analyze time-series material degradation, fit multiple mathematical models, compare their performance, visualize results, and extrapolate lifetime estimates (for example, days to 50% degradation).
+A focused Python toolkit to analyze two datasets (one at room temperature and one at refrigerator temperature), fit multiple mathematical models, compare their performance, visualize results, and extrapolate lifetime estimates (for example, days to 50% degradation).
 
 ---
 
@@ -23,6 +23,7 @@ A focused Python toolkit to analyze time-series material degradation, fit multip
 
 ## Features
 - Automatic preprocessing and cleaning of Excel time-series degradation data.
+- Handles **two datasets in parallel**: one at room temperature and one at refrigerator temperature.
 - Fits four model classes: Linear, Logarithmic, Power-law, Exponential.
 - Computes R², MSE, RMSE for each fit.
 - Extrapolates degradation and estimates days to reach 50% degradation.
@@ -71,12 +72,13 @@ scipy
 1. Clone the repo.
 2. Create and activate a virtual environment.
 3. Install dependencies: `pip install -r requirements.txt`.
-4. Place your input Excel files where you want or note their full paths for the script prompt.
+4. Prepare two Excel input files (room and refrigerator data).
 
 ---
 
 ## Data format
-Provide **two Excel files**: one for room temperature data and one for refrigerator data. Requirements:
+Provide **two Excel files**: one for room temperature data and one for refrigerator temperature data.  
+The tool processes both datasets in parallel and reports results for each. Requirements:
 
 - A time column. Accepted names: `Day`, `Days`, `Time`, `Hours` (case-insensitive). Values must be numeric and strictly increasing rows represent later times.
 - One or more batch columns. Each column contains degradation percent values (0–100). Column headers can be descriptive, e.g. `Standard Batch (0%)`, `Neem 25%`.
@@ -101,13 +103,13 @@ The script will prompt:
 - `Enter the path to the REFRIGERATOR temperature data Excel file:`  
 
 Processing steps:
-1. Load and clean each Excel file.
-2. For each batch column:
+1. Load and clean both Excel files.
+2. For each dataset and batch column:
    - Fit Linear, Logarithmic, Power-law, Exponential models.
    - Compute metrics: R², MSE, RMSE.
    - Extrapolate forward (configurable in the script).
    - Find earliest day where predicted degradation ≥ 50% (if model crosses 50%).
-3. Save plots, CSV summaries, and a detailed `.txt` report.
+3. Save plots, CSV summaries, and a detailed `.txt` report for both room and refrigerator conditions.
 
 ---
 
