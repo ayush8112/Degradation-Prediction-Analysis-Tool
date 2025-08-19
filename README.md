@@ -1,72 +1,15 @@
-Degradation Analysis and Predictive Modeling Tool
-1. Overview
-This Python-based tool offers a comprehensive, automated solution for analyzing and predicting material degradation over time. By processing time-series data from two different environmental conditions (e.g., room temperature and refrigerator), it fits four distinct mathematical models to accurately forecast material lifespan.
-The script is designed for researchers, engineers, and scientists who need to extrapolate material stability, compare different formulations (batches), and rigorously evaluate the performance of predictive models. It automates the entire workflow from data cleaning to generating a full suite of publication-ready outputs, including detailed graphs, performance tables, and comparative heatmaps.
-2. Key Features
-Dual-Condition Analysis: Simultaneously processes and compares data from two separate Excel files (e.g., Room vs. Refrigerator temperature).
-Automated Data Preprocessing: Intelligently finds and cleans time-series data from input files, handling common column names like 'Day', 'Days', 'Time', or 'Hours'.
-Multi-Model Fitting: Implements four robust models to capture different degradation behaviors:
-Linear: For constant-rate degradation.
-Logarithmic: For degradation that slows over time.
-Power Law: For flexible, non-linear degradation (both accelerating and decelerating).
-Exponential: For degradation that accelerates over time.
-Lifespan Prediction: Calculates and reports the predicted time (in days) for each batch to reach a 50% degradation threshold.
-Publication-Ready Visualizations:
-Generates individual plots for every batch, condition, and model.
-Features intelligent axis scaling that automatically creates scientifically logical, evenly-spaced intervals for optimal data presentation.
-Clearly distinguishes between interpolated data and extrapolated predictions using solid and dashed lines.
-In-Depth Performance Metrics: For each model, it calculates and displays the R² (Coefficient of Determination) and RMSE (Root Mean Squared Error).
-Comparative Heatmaps: Creates intuitive heatmaps to visually compare the performance (R², RMSE) of all models across all batches for a given condition.
-Comprehensive Reporting:
-Generates clean, easy-to-read summary tables in the console.
-Saves summary tables to CSV files for further analysis.
-Produces a detailed text-based report summarizing all findings.
-Organized Output: Automatically creates graphs/ and results/ directories to save all generated files neatly.
-3. Models Used
-The tool leverages four different models to provide a comprehensive analysis of degradation trends:
-Model	Equation	Description
-Linear	$y = mx + c$	Represents a constant rate of degradation. Simple, but effective as a baseline.
-Logarithmic	$y = a \cdot \ln(x + b) + c$	Models a process that is initially rapid but slows down and levels off over time.
-Power Law	$y = a \cdot x^b + c$	A flexible non-linear model. If b > 1, it accelerates; if 0 < b < 1, it decelerates. A robust replacement for polynomial models as it never peaks.
-Exponential	$y = a \cdot e^{bx} + c$	Describes a process that starts slowly and then accelerates rapidly, often seen in autocatalytic reactions.
-4. Prerequisites
-Before running the script, you need to have Python installed on your system. You also need to install the following Python libraries:
-pandas
+Degradation Analysis & Extrapolation ToolA comprehensive Python tool for analyzing and predicting material degradation. This script fits various mathematical models to time-series data, generates detailed performance metrics, and creates insightful visualizations to forecast material lifespan.Table of ContentsFeaturesPrerequisitesInstallationHow to UseOutputContributingLicenseFeaturesData Preprocessing: Automatically cleans and processes time-series degradation data from Excel files.Multiple Model Fitting: Fits four different degradation models to the data:LinearLogarithmicPower LawExponentialPerformance Metrics: Calculates R-squared (R²), Mean Squared Error (MSE), and Root Mean Squared Error (RMSE) for each model to evaluate its fit.Prediction: Extrapolates degradation over time and predicts the number of days to reach a 50% degradation threshold.Data Visualization:Generates individual plots for each model, showing the actual data, the fitted curve, and the future prediction.Creates performance heatmaps to visually compare the R², MSE, and RMSE values across all models and material batches.Reporting:Generates summary tables in both the console and as CSV files.Creates a detailed text report summarizing the entire analysis.PrerequisitesBefore you can run this script, you need to have Python 3.6+ installed on your system.InstallationClone the repository to your local machine:git clone https://github.com/your-username/your-repository-name.git
+cd your-repository-name
+It is recommended to create a virtual environment to manage dependencies:python -m venv venv
+source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+Install the required Python libraries from the requirements.txt file:pip install -r requirements.txt
+(Note: You will need to create a requirements.txt file containing the libraries listed below.)pandas
+numpy
 matplotlib
 scikit-learn
 openpyxl
 scipy
-You can install them all by running the following command in your terminal or command prompt:
-code
-Bash
-pip install pandas matplotlib scikit-learn openpyxl scipy
-5. Usage
-Save the script to a file (e.g., analysis.py).
-Place your two Excel data files in a convenient location (preferably the same directory).
-Open a terminal or command prompt and navigate to the directory where you saved the script.
-Run the script using the following command:
-code
-Bash
-python analysis.py
-The script will prompt you to enter the file paths for the room temperature data and the refrigerator temperature data. Paste each path and press Enter.
-The analysis will run automatically. Once completed, check the graphs and results sub-folders that have been created in the same directory as your input files.
-6. Input File Format
-The script expects the input data to be in an Excel (.xlsx or .xls) file. The sheet should contain:
-A time column, which can be named Day, Days, Time, or Hours. If 'Hours' is used, the values will be automatically converted to days.
-Separate columns for each batch. The column names must exactly match the ones defined in the script (Standard Batch (0%), Neem, 25%, etc.).
-Example Data Structure:
-Day	Standard Batch (0%)	Neem, 25%	Eucalyptus, 25%	Moringa, 25%
-0	0.5	0.4	0.6	0.5
-7	5.2	4.8	5.5	5.1
-14	10.1	9.5	10.8	9.9
-21	15.6	14.2	16.1	15.0
-...	...	...	...	...
-7. Output Files
-After a successful run, the following files will be generated:
-graphs/
-Individual Model Plots: [Batch_Name]_[Condition]_[Model]_model.png - A detailed plot for each combination of batch, condition, and model.
-Performance Heatmaps: heatmap_[Condition]_[Metric].png - Visual summaries of model performance (R², MSE, RMSE) for each condition.
-results/
-Processed Data: [input_file_name]_processed.csv - The cleaned, interpolated data used for modeling.
-Summary Tables: summary_[Model].csv - CSV files summarizing the key results (R², RMSE, Days to 50%) for each model type.
-Comprehensive Report: degradation_analysis_report.txt - A detailed text file containing all metrics and predictions for every batch and model, providing a complete overview of the analysis.
+How to UsePrepare your data: You will need two Excel files, one for room temperature data and one for refrigerator temperature data. Each file should contain a time column (e.g., 'Day', 'Days', 'Time', 'Hours') and columns for the degradation percentage of different batches (e.g., 'Standard Batch (0%)', 'Neem, 25%').Run the script: Execute the Python script from your terminal:python Prediction.py
+Provide file paths: The script will prompt you to enter the full paths to your two Excel files.Enter the path to the ROOM temperature data Excel file: /path/to/your/room_temp_data.xlsx
+Enter the path to the REFRIGERATOR temperature data Excel file: /path/to/your/ref_temp_data.xlsx
+Review the output: The script will save the results in two new sub-folders (graphs and results) in the same directory as your input files.OutputThe script generates the following outputs:Processed Data (/results folder): A CSV file for each input Excel file containing the cleaned and processed data.Graphs (/graphs folder):Individual PNG plots for each batch and each model.PNG heatmaps for R², MSE, and RMSE.Summary Tables (/results folder): CSV files summarizing performance metrics.Detailed Report (/results folder): A .txt file containing a comprehensive summary of the analysis.ContributingContributions are welcome! If you have suggestions for improvements, please open an issue or submit a pull request.Fork the ProjectCreate your Feature Branch (git checkout -b feature/AmazingFeature)Commit your Changes (git commit -m 'Add some AmazingFeature')Push to the Branch (git push origin feature/AmazingFeature)Open a Pull RequestLicenseDistributed under the MIT License. See LICENSE for more information.(Note: You will need to add a LICENSE file to your repository. The MIT License is a popular choice for open-source projects.)
