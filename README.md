@@ -1,4 +1,4 @@
-# Degradation Analysis & Extrapolation Tool
+# Degradation Prediction & Analysis Tool
 
 A focused Python toolkit to analyze time-series material degradation, fit multiple mathematical models, compare their performance, visualize results, and extrapolate lifetime estimates (for example, days to 50% degradation).
 
