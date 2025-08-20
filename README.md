@@ -1,4 +1,4 @@
-# Degradation Prediction & Analysis Tool
+# Degradation Prediction And Analysis Tool
 
 A flexible Python toolkit to analyze multiple user-defined datasets, fit a selection of mathematical models, compare their performance, visualize results, and extrapolate lifetime estimates (for example, days to 50% degradation).
 
